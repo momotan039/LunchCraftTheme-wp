@@ -1,4 +1,11 @@
 <?php
+//setup theme
+function theme_setup() {
+    add_theme_support('post-thumbnails'); // Enable featured images
+}
+add_action('after_setup_theme', 'theme_setup');
+
+//add css files
 function css_enqueue_styles() {
     // Get the theme directory URL
     $theme_uri = get_template_directory_uri();
@@ -20,14 +27,11 @@ function css_enqueue_styles() {
 
 add_action('wp_enqueue_scripts', 'css_enqueue_styles');
 
-
+//add js files
 function js_enqueue_scripts() {
     $theme_uri = get_template_directory_uri();
-
-    // jQuery (WordPress includes jQuery, so use it properly)
-    wp_enqueue_script('jquery');
-
     // Enqueue Scripts
+    wp_enqueue_script('jquery-min', $theme_uri . '/assets/js/jquery-min.js', array('jquery'), null, true);
     wp_enqueue_script('popper', $theme_uri . '/assets/js/popper.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap', $theme_uri . '/assets/js/bootstrap.min.js', array('jquery'), null, true);
     wp_enqueue_script('owl-carousel', $theme_uri . '/assets/js/owl.carousel.js', array('jquery'), null, true);
@@ -39,9 +43,6 @@ function js_enqueue_scripts() {
     wp_enqueue_script('form-validator', $theme_uri . '/assets/js/form-validator.min.js', array('jquery'), null, true);
     wp_enqueue_script('contact-form', $theme_uri . '/assets/js/contact-form-script.js', array('jquery'), null, true);
     wp_enqueue_script('main-script', $theme_uri . '/assets/js/main.js', array('jquery'), null, true);
-
-    // Ensure jQuery loads first (if needed)
-    wp_enqueue_script('jquery');
 
 }
 add_action('wp_enqueue_scripts', 'js_enqueue_scripts');

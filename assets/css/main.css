@@ -1105,6 +1105,9 @@ button:focus {
 
 #blog {
   background: #f9f9f9; }
+  #blog .blog-item-img img{
+    min-height: 300px;
+  }
   #blog .blog-item-wrapper {
     border: 1px solid #ddd;
     background-color: #fff;
